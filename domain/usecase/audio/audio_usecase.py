@@ -1,15 +1,10 @@
-import threading
-
-from infrastructure.driven_adapter.web_socket.web_socket import WebSocket
 from domain.model.audio.gateway.web_socket_gateway import WebSocketGateway
+from infrastructure.driven_adapter.web_socket.web_socket import WebSocket
 from infrastructure.helpers.fragment.fragment_file import fragment_and_send
 
 
 def send_audio(ws, encrypted_audio, gateway: WebSocketGateway = WebSocket()):
     print("Conexión WebSocket establecida.")
-
-    hilo_escucha = threading.Thread(target=gateway.listen_ws(ws), args=(ws,), daemon=True)
-    hilo_escucha.start()
 
     file_name = input("Introduce el nombre del archivo: ")
     fragment_and_send(encrypted_audio, ws, file_name)

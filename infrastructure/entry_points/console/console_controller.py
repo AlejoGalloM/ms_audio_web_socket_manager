@@ -31,8 +31,9 @@ def get_transcribe(ws):
     see_transcribe(ws, id_file)
 
 
-def salir():
+def salir(ws):
     print("Saliendo del programa...")
+    close_connection(ws)
     return True
 
 
@@ -59,7 +60,6 @@ def console():
         accion = opciones.get(opcion)
         if accion:
             if accion(ws):
-                create_connection(ws)
                 break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
