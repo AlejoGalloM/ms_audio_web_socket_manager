@@ -10,6 +10,8 @@ def fragment_and_send(contenido, ws, id_audio, tamanio_fragmento=1024):
             mensaje = f"upload:{id_audio}:{indice_fragmento}:{total_fragmentos}:{fragmento}"
             print(f"Enviando fragmento {indice_fragmento}/{total_fragmentos}")
             ws.send(mensaje)
+            ws.recv()
+            print(f"Fragmento {indice_fragmento} enviado con éxito.")
         except Exception as e:
             print(f"Error al enviar el fragmento {indice_fragmento}: {e}")
             break
